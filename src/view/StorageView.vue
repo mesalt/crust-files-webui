@@ -52,7 +52,6 @@ const triggerFolderUpload = () => {
 const handleFileUpload = (event: Event) => {
     const files = (event.target as HTMLInputElement).files;
     if (files && files.length > 0) {
-        console.log('上传的文件:', files);
         for (const file of files) {
             const task = TaskFromContent(file);
             userStore.pool.add(() => postUploadContent(task));
@@ -64,11 +63,8 @@ const handleFileUpload = (event: Event) => {
 const handleFolderUpload = (event: Event) => {
     const files = (event.target as HTMLInputElement).files;
     if (files && files.length > 0) {
-        console.log('上传的文件夹:', files);
         const task = TaskFromContent(Array.from(files));
         userStore.pool.add(() => postUploadContent(task));
-        // 调用上传文件夹的 API
-        // uploadFolder(files);
     }
 };
 
